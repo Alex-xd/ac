@@ -1,0 +1,21 @@
+{
+  "name": "ac-boyuan",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/Alex-xd/ac#readme",
+  "bugs": {
+    "url": "https://github.com/Alex-xd/ac/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-xd/ac.git"
+  },
+  "license": "ISC",
+  "author": "boyuan.zby",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
