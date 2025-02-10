@@ -1,33 +1,50 @@
-/*
+import Base from "../base.js";
 
-Longest Substring Without Repeating Characters
-Given a string s, find the length of the longest substring without duplicate characters.
-
-A substring is a contiguous sequence of characters within a string.
-
-Example 1:
-
-Input: s = "zxyzxyz"
-
-Output: 3
-Explanation: The string "xyz" is the longest without duplicate characters.
-
-Example 2:
-
-Input: s = "xxxx"
-
-Output: 1
-Constraints:
-
-0 <= s.length <= 1000
-s may consist of printable ASCII characters.
-
-*/
-
-class Solution {
+class Solution extends Base {
   /**
    * @param {string} s
    * @return {number}
+   *
+   * 0123456
+   * zxyzxyz
+   *  l  r
+   * r
+   * dict = { z, x, y }
    */
-  lengthOfLongestSubstring(s) {}
+  lengthOfLongestSubstring(s) {
+    if (typeof s !== "string") {
+      return 0;
+    }
+    if (s.length <= 1) {
+      return s.length;
+    }
+
+    let l = 0,
+      r = 0;
+    let maxL = 0;
+    const dict = {}; // { d: 2, v: 1 }
+
+    while (r < s.length) {
+      if ((dict[s[r]] || 0) < 1) {
+        dict[s[r]] = (dict[s[r]] || 0) + 1;
+        maxL = Math.max(r - l + 1, maxL);
+      } else {
+        dict[s[r]] = (dict[s[r]] || 0) + 1;
+        while (dict[s[r]] > 1) {
+          dict[s[l]] -= 1;
+          l += 1;
+        }
+      }
+      r += 1;
+    }
+
+    return maxL;
+  }
 }
+
+const s = new Solution([
+  ["zxyzxyz", 3],
+  ["pwwkew", 3],
+  ["dvdf", 3],
+]);
+s.lengthOfLongestSubstring();
