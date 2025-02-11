@@ -9,7 +9,10 @@ class Base {
             if (args.length === 0 && target.testCases.length > 0) {
               target.testCases.forEach((testCase) => {
                 const [input, expected] = testCase;
-                const result = originalMethod.apply(target, [input]);
+                const result = originalMethod.apply(
+                  target,
+                  Array.isArray(input) ? input : [input]
+                );
                 const isSuccess = result === expected ? "Success" : "Fail";
                 console.log(
                   `${prop}(${input}): ${result} (Expected: ${expected}) - ${isSuccess}`
