@@ -13,7 +13,14 @@ class Base {
                   target,
                   Array.isArray(input) ? input : [input]
                 );
-                const isSuccess = result === expected ? "Success" : "Fail";
+                let isSuccess = "Fail";
+                if (Array.isArray(result) && Array.isArray(expected)) {
+                  isSuccess = JSON.stringify(result) === JSON.stringify(expected) ? "Success" : "Fail";
+                } else if (typeof result === 'object' && result !== null && typeof expected === 'object' && expected !== null) {
+                  isSuccess = JSON.stringify(result) === JSON.stringify(expected) ? "Success" : "Fail";
+                } else {
+                  isSuccess = result === expected ? "Success" : "Fail";
+                }
                 console.log(
                   `${prop}(${input}): ${result} (Expected: ${expected}) - ${isSuccess}`
                 );
